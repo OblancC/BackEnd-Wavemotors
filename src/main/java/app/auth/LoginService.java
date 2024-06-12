@@ -7,12 +7,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 
 import app.config.JwtServiceGenerator;
+import app.entity.Vendedores;
+import app.repository.VendedoresRepository;
 
 @Service
 public class LoginService {
 	
 	@Autowired
-	private LoginRepository repository;
+	private VendedoresRepository repository;
 	@Autowired
 	private JwtServiceGenerator jwtService;
 	@Autowired
@@ -26,7 +28,7 @@ public class LoginService {
 						login.getPassword()
 						)
 				);
-		Usuario user = repository.findByUsername(login.getUsername()).get();
+		Vendedores user = repository.findByEmail(login.getUsername()).get();
 		String jwtToken = jwtService.generateToken(user);
 		
 		return jwtToken;

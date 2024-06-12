@@ -47,7 +47,7 @@ public class VendedoresService {
 
 	public Vendedores findByEmail(String email) {
 
-		Vendedores vendedores = this.vendedoresrepository.findByEmail(email);
+		Vendedores vendedores = this.vendedoresrepository.findByEmail(email).get();
 		return vendedores;
 	}
 

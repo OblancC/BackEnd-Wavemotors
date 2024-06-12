@@ -11,7 +11,7 @@ import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import app.auth.Usuario;
+import app.entity.Vendedores;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -20,14 +20,14 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtServiceGenerator {  
 
-  public String generateToken(Usuario userDetails) {
+  public String generateToken(Vendedores userDetails) {
 	
 	  
 	  //AQUI VOCÊ PODE COLOCAR O QUE MAIS VAI COMPOR O PAYLOAD DO TOKEN
       Map<String, Object> extraClaims = new HashMap<>();
       extraClaims.put("username", userDetails.getUsername());
-      extraClaims.put("id", userDetails.getId().toString());
-      extraClaims.put("role", userDetails.getRole());
+      extraClaims.put("id", userDetails.getIdVendedor());
+      extraClaims.put("role", userDetails.getAuthorities());
       extraClaims.put("outracoisa", "teste");
 	  
       
