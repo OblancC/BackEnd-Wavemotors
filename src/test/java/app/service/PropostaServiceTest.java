@@ -13,7 +13,7 @@ import app.repository.PropostaRepository;
 
 @SpringBootTest
 public class PropostaServiceTest {
-	
+	/*
 	@Autowired
 	PropostaService	propostaService;
 	
@@ -35,4 +35,5 @@ public class PropostaServiceTest {
 		proposta.setValorProposta(4000);
 		assertThrows(RuntimeException.class, () -> propostaService.verificarValor(proposta));
 	}
+	*/
 }

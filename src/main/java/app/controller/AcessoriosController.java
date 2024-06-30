@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ public class AcessoriosController {
 	@Autowired
 	private AcessorioService acessorioService;
 	
+	@PreAuthorize("hasRole(1)")
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Acessorio acessorio) {
 		
@@ -40,7 +42,7 @@ public class AcessoriosController {
 		}
 		
 	}
-	
+	@PreAuthorize("hasRole(1)")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@RequestBody Acessorio acessorio, @PathVariable long id) {
 		
@@ -56,7 +58,7 @@ public class AcessoriosController {
 		}
 		
 	}
-	
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Acessorio>> listAll (){
 		
@@ -72,7 +74,7 @@ public class AcessoriosController {
 		}
 		
 	}
-	
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findById/{idAcessorio}")
 	public ResponseEntity<Acessorio> findById(@PathVariable long idAcessorio){
 		
@@ -86,7 +88,7 @@ public class AcessoriosController {
 		}
 		
 	}
-	
+	@PreAuthorize("hasRole(1)")
 	@DeleteMapping("/delete/{idAcessorio}")
 	public ResponseEntity<String> delete(@PathVariable long idAcessorio){
 		

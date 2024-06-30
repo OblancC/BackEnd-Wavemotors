@@ -37,6 +37,11 @@ public class SecurityConfig  {
 		.cors(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/api/login").permitAll()
+				.requestMatchers("/api/anuncioveiculo/findAll").permitAll()
+				.requestMatchers("/api/Acessorio/listAll").permitAll()
+				.requestMatchers("/api/anuncioveiculo/findById/{idAnuncio}").permitAll()
+				.requestMatchers("/api/VeiculosMarca/listAll").permitAll()
+				.requestMatchers("/api/Proposta/save").permitAll()
 				.anyRequest().authenticated())
 		.authenticationProvider(authenticationProvider)
 		.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
@@ -51,7 +56,8 @@ public class SecurityConfig  {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 		config.setAllowCredentials(true);
-		config.addAllowedOrigin("http://localhost:4200");
+		config.setAllowedOriginPatterns(Arrays.asList("*"));
+		//config.addAllowedOrigin("http://localhost:4200");
 		config.setAllowedHeaders(Arrays.asList(HttpHeaders.AUTHORIZATION,HttpHeaders.CONTENT_TYPE,HttpHeaders.ACCEPT));
 		config.setAllowedMethods(Arrays.asList(HttpMethod.GET.name(),HttpMethod.POST.name(),HttpMethod.PUT.name(),HttpMethod.DELETE.name()));
 		config.setMaxAge(3600L);

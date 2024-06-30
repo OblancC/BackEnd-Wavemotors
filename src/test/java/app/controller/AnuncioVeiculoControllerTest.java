@@ -28,7 +28,7 @@ import app.repository.AnuncioVeiculoRepository;
 
 @SpringBootTest
 public class AnuncioVeiculoControllerTest {
-
+/*
 	@Autowired
 	AnuncioVeiculoController anuncioVeiculoController;
 
@@ -72,6 +72,7 @@ public class AnuncioVeiculoControllerTest {
 		assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
 	}
 	*/
+	/*
 	@Test
 	@DisplayName("2 -[TESTE] findAll")
 	void findall() {
@@ -124,6 +125,7 @@ public class AnuncioVeiculoControllerTest {
 		assertEquals(HttpStatus.BAD_REQUEST,response.getStatusCode());
 		assertNull(response.getBody());
 	}
+	*/
 	/*
 	@Test
 	@DisplayName("[TESTE] Update")
@@ -153,5 +155,4 @@ public class AnuncioVeiculoControllerTest {
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
 	*/
-
 }

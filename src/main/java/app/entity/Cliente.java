@@ -74,8 +74,8 @@ public class Cliente {
 	@Basic
 	private boolean flagAtivo;
 
-	@OneToMany(mappedBy = "cliente")
-	@JsonIgnoreProperties("cliente")
-	private List<Proposta> proposta;
+	//@OneToMany(mappedBy = "cliente")
+	//@JsonIgnoreProperties("cliente")
+	//private List<Proposta> proposta;
 
 }

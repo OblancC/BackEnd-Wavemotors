@@ -8,8 +8,6 @@ import app.entity.Proposta;
 
 public interface PropostaRepository extends JpaRepository<Proposta, Long> {
 
-	public List<Proposta> findBydataCriado(String dataCriado);
-
 	public List<Proposta> findByvalorProposta(double valorProposta);
 
 }

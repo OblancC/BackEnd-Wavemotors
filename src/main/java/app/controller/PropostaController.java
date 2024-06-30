@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,7 @@ public class PropostaController {
 		}
 	}
 
+	@PreAuthorize("hasRole(1)")
 	@PutMapping("/delete/{id}")
 	public ResponseEntity<String> delete(@PathVariable Long id) {
 		try {
@@ -48,7 +50,7 @@ public class PropostaController {
 			return new ResponseEntity<String>("Ocorreu esse erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findById/{id}")
 	public ResponseEntity<Proposta> findById(@PathVariable Long id) {
 		try {
@@ -58,7 +60,7 @@ public class PropostaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Proposta>> findAll() {
 		try {
@@ -68,7 +70,7 @@ public class PropostaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody @Valid Proposta proposta) {
 		try {
@@ -78,17 +80,7 @@ public class PropostaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
-	@GetMapping("/findByDataCriada")
-	public ResponseEntity<List<Proposta>> findBydataCriada(@RequestParam String dataCriada) {
-		try {
-			List<Proposta> lista = this.propostaService.findBydataCriado(dataCriada);
-			return new ResponseEntity<>(lista, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-		}
-	}
-
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findByValorProposta")
 	public ResponseEntity<List<Proposta>> findByvalorProposta(@RequestParam double valorProposta) {
 		try {

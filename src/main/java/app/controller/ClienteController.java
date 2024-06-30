@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteService clienteService;
-
+	@PreAuthorize("hasRole(1)")
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Cliente cliente) {
 
@@ -41,7 +42,7 @@ public class ClienteController {
 		}
 
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Cliente cliente) {
 		try {
@@ -53,7 +54,7 @@ public class ClienteController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@PutMapping("/delete/{idUser}")
 	public ResponseEntity<String> delete(@PathVariable Long idUser) {
 		try {
@@ -65,7 +66,7 @@ public class ClienteController {
 		}
 
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Cliente>> findAll() {
 		try {
@@ -76,7 +77,7 @@ public class ClienteController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findById/{idUser}")
 	public ResponseEntity<Cliente> findById(@PathVariable Long idUser) {
 		try {
@@ -86,7 +87,7 @@ public class ClienteController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findByNome")
 	public ResponseEntity<List<Cliente>> findByNome(@RequestParam String nome) {
 		try {
@@ -97,7 +98,7 @@ public class ClienteController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findByCidade")
 	public ResponseEntity<List<Cliente>> findByCidade(String cidade) {
 		try {
@@ -109,7 +110,7 @@ public class ClienteController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findByNomeLike")
 	public ResponseEntity<List<Cliente>> findByNomeLike(@RequestParam String nome) {
 		try {

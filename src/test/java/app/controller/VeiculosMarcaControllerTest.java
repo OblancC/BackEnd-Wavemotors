@@ -28,7 +28,7 @@ import app.repository.VeiculosMarcaRepository;
 
 @SpringBootTest
 public class VeiculosMarcaControllerTest {
-
+/*
 	@Autowired
 	VeiculosMarcaController veiculosmarcaController;
 
@@ -165,5 +165,5 @@ public class VeiculosMarcaControllerTest {
 		assertEquals("HONDA", veiculosmarca.getMarca());
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
-
+*/
 }

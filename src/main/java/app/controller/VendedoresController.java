@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,7 @@ public class VendedoresController {
 
 	@Autowired
 	private VendedoresService vendedoresservice;
-		
+	@PreAuthorize("hasRole(1)")	
 	//funcao para salvar cadastro do vendedor
 	@PostMapping("save")
 	public ResponseEntity<String> save(@RequestBody Vendedores vendedores) {
@@ -41,6 +42,7 @@ public class VendedoresController {
 		}
 	}
 	//funcao para fazer uma atualizacao no cadastro do vendedor
+	@PreAuthorize("hasRole(1)")
 	@PutMapping("/update/{idVendedor}")
 	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody Vendedores vendedores) {
 		try {
@@ -52,6 +54,7 @@ public class VendedoresController {
 		}
 	}
 		//funcao para mostrar todos os cadastros de vendedores
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Vendedores>> findAll() {
 		try {
@@ -64,6 +67,7 @@ public class VendedoresController {
 
 	}
 		//funcao para procurar vendedor pelo idVendedor
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findById/{idVendedor}")
 	public ResponseEntity<Vendedores> findById(@PathVariable Long idVendedor) {
 		try {
@@ -74,6 +78,7 @@ public class VendedoresController {
 		}
 	}
 		//funcao para excluir o id do vendedor
+	@PreAuthorize("hasRole(1)")
 	@DeleteMapping("/delete/{idVendedor}")
 	public ResponseEntity<String> delete(@PathVariable Long idVendedor) {
 		try {
@@ -86,6 +91,7 @@ public class VendedoresController {
 		}
 	}
 		//funcao para procurar vendedor por nome
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findByNomeLike")
 	public ResponseEntity<List<Vendedores>> findByNomeLike(@RequestParam String nome) {
 		try {
@@ -98,6 +104,7 @@ public class VendedoresController {
 		}
 	}
 		//funcao para procurar vendedor por email
+	@PreAuthorize("hasRole(1)")
 	@GetMapping("/findByEmail")
 	public ResponseEntity<Vendedores> findByEmail(@RequestParam String email) {
 		try {

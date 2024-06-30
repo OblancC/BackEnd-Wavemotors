@@ -27,19 +27,23 @@ public class Proposta {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private long idProposta;
 	
-	@NotBlank
-	private String dataCriado;
 	@NotNull
 	private double valorProposta;
+
 	@NotBlank
-	private String DescricaoProposta;
+	private String nomeCliente;
+	@NotBlank
+	private String telefoneCliente;
+	@NotBlank
+	private String emailCliente;
+	
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JsonIgnoreProperties("proposta")
 	private AnuncioVeiculo anuncioveiculo;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JsonIgnoreProperties("proposta")
-	private Cliente cliente;
+	//@ManyToOne(cascade = CascadeType.PERSIST)
+	//@JsonIgnoreProperties("proposta")
+	//private Cliente cliente;
 
 }

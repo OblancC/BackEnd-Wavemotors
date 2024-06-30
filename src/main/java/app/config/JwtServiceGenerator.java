@@ -27,7 +27,7 @@ public class JwtServiceGenerator {
       Map<String, Object> extraClaims = new HashMap<>();
       extraClaims.put("username", userDetails.getUsername());
       extraClaims.put("id", userDetails.getIdVendedor());
-      extraClaims.put("role", userDetails.getAuthorities());
+      extraClaims.put("flagTipoUser", userDetails.getFlagTipoUser());
       extraClaims.put("outracoisa", "teste");
 	  
       

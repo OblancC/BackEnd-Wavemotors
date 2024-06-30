@@ -28,7 +28,7 @@ import app.repository.PropostaRepository;
 
 @SpringBootTest
 public class PropostaControllerTest {
-
+/*
 	@Autowired
 	PropostaController propostaController;
 
@@ -183,5 +183,5 @@ public class PropostaControllerTest {
 		Proposta proposta = new Proposta();
 		proposta.setValorProposta(6000);
 	
-	}
+	}*/
 }

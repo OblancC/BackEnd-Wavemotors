@@ -41,10 +41,6 @@ public class PropostaService {
 		return "Proposta Atualizada";
 	}
 
-	public List<Proposta> findBydataCriado(String dataCriado) {
-		List<Proposta> lista = propostaRepository.findBydataCriado(dataCriado);
-		return lista;
-	}
 
 	public List<Proposta> findByvalorProposta(double valorProposta) {
 		return propostaRepository.findByvalorProposta(valorProposta);
