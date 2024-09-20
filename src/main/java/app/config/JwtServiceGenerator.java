@@ -10,12 +10,15 @@ import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import app.entity.Vendedores;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class JwtServiceGenerator {  
@@ -78,5 +81,16 @@ public class JwtServiceGenerator {
       final Claims claims = extractAllClaims(token);
       return claimsResolver.apply(claims);
   }
+  
+  public String extractNome(String token) {
+	    return extractClaim(token, claims -> claims.get("username", String.class));
+	}
+
+  public String getNomeFromToken() {
+	  HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+    String token = request.getHeader("Authorization").substring(7); 
+    return extractNome(token);
+}
+
 
 }

@@ -13,14 +13,20 @@ public class AcessorioService {
 	@Autowired
 	private AcessorioRepository acessorioRepository;
 	
+	@Autowired
+	private LogService logService;
+	
+	
 	public String save(Acessorio acessorio) {
 		this.acessorioRepository.save(acessorio);
+		logService.createLog("SAVE", acessorio.getNome(),"Acessorio");
 		return acessorio.getNome()+ "Salvo com sucesso";
 	}
 	
 	public String update(long id, Acessorio acessorio) {
 		acessorio.setId(id);
 		this.acessorioRepository.save(acessorio);
+		logService.createLog("UPDATE", acessorio.getNome(),"Acessorio");
 		return acessorio.getNome() + "Atualizado com Sucesso";
 	}
 	
@@ -35,6 +41,9 @@ public class AcessorioService {
 	
 	public String delete(long id) {
 		this.acessorioRepository.deleteById(id);
+		Acessorio acessorio = this.acessorioRepository.findById(id).get();
+		String nome = acessorio.getNome();
+		logService.createLog("DELETE", nome,"Acessorio");
 		return "Acessorio Deletado";
 	}
 }

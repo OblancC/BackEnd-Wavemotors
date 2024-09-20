@@ -14,20 +14,55 @@ public class AnuncioVeiculoService {
 	@Autowired
 	private AnuncioVeiculoRepository anuncioveiculorepository;
 
+	@Autowired
+	private LogService logService;
+	
 	public String save(AnuncioVeiculo anuncioveiculo) {
 
 		this.anuncioveiculorepository.save(anuncioveiculo);
+	    String detalhesVeiculo = "ID: " + anuncioveiculo.getIdAnuncio() + ", "
+                + "Modelo: " + anuncioveiculo.getModelo() + ", "
+                + "Cor: " + anuncioveiculo.getCor() + ", "
+                + "Ano: " + anuncioveiculo.getAno() + ", "
+                + "Combustível: " + anuncioveiculo.getCombustivel() + ", "
+                + "Valor: R$" + anuncioveiculo.getValorcarro() + ", "
+                + "Placa: " + anuncioveiculo.getPlacacarro() + ", "
+                + "Km: " + anuncioveiculo.getKm() + ", "
+                + "Imagem: " + anuncioveiculo.getImagem();
+		logService.createLog("SAVE", detalhesVeiculo,"Veiculo");
 		return anuncioveiculo.getModelo() + " salvo com sucesso";
 	}
 
 	public String update(Long id, AnuncioVeiculo anuncioveiculo) {
 		anuncioveiculo.setIdAnuncio(id);
 		this.anuncioveiculorepository.save(anuncioveiculo);
+		String detalhesVeiculo = "ID: " + anuncioveiculo.getIdAnuncio() + ", "
+                + "Modelo: " + anuncioveiculo.getModelo() + ", "
+                + "Cor: " + anuncioveiculo.getCor() + ", "
+                + "Ano: " + anuncioveiculo.getAno() + ", "
+                + "Combustível: " + anuncioveiculo.getCombustivel() + ", "
+                + "Valor: R$" + anuncioveiculo.getValorcarro() + ", "
+                + "Placa: " + anuncioveiculo.getPlacacarro() + ", "
+                + "Km: " + anuncioveiculo.getKm() + ", "
+                + "Imagem: " + anuncioveiculo.getImagem();
+		logService.createLog("UPDATE", detalhesVeiculo,"Veiculo");
 		return anuncioveiculo.getModelo() + "atualizado com sucesso";
 	}
 
 	public String delete(Long idAnuncio) {
 		this.anuncioveiculorepository.deleteById(idAnuncio);
+		AnuncioVeiculo anuncioveiculo = this.anuncioveiculorepository.findById(idAnuncio).get();
+		String nome = anuncioveiculo.getModelo();
+		String detalhesVeiculo = "ID: " + anuncioveiculo.getIdAnuncio() + ", "
+                + "Modelo: " + anuncioveiculo.getModelo() + ", "
+                + "Cor: " + anuncioveiculo.getCor() + ", "
+                + "Ano: " + anuncioveiculo.getAno() + ", "
+                + "Combustível: " + anuncioveiculo.getCombustivel() + ", "
+                + "Valor: R$" + anuncioveiculo.getValorcarro() + ", "
+                + "Placa: " + anuncioveiculo.getPlacacarro() + ", "
+                + "Km: " + anuncioveiculo.getKm() + ", "
+                + "Imagem: " + anuncioveiculo.getImagem();
+		logService.createLog("DELETE", detalhesVeiculo,"Veiculo");
 		return "Anuncio deletado com sucesso";
 	}
 

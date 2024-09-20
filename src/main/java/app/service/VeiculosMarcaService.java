@@ -13,10 +13,14 @@ public class VeiculosMarcaService {
 
 	@Autowired
 	private VeiculosMarcaRepository veiculosmarcarepository;
+	
+	@Autowired
+	private LogService logService;
 
 	public String save(VeiculosMarca veiculosmarca) {
 
 		this.veiculosmarcarepository.save(veiculosmarca);
+		logService.createLog("SAVE", veiculosmarca.getMarca(),"Marca");
 		return veiculosmarca.getMarca() + " salvo com sucesso";
 
 	}
@@ -24,11 +28,15 @@ public class VeiculosMarcaService {
 	public String update(Long idMarca, VeiculosMarca veiculosmarca) {
 		veiculosmarca.setIdMarca(idMarca);
 		this.veiculosmarcarepository.save(veiculosmarca);
+		
+		logService.createLog("UPDATE", veiculosmarca.getMarca(),"Marca");
 		return veiculosmarca.getMarca() + "atualizado com sucesso";
 	}
 
 	public String delete(Long idMarca) {
 		this.veiculosmarcarepository.deleteById(idMarca);
+		VeiculosMarca veiculosmarca = this.veiculosmarcarepository.findByIdMarca(idMarca);
+		logService.createLog("DELETE", veiculosmarca.getMarca(),"Marca");
 		return "Marca deletada com sucesso";
 	}
 
