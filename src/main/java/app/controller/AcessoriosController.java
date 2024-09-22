@@ -26,7 +26,7 @@ public class AcessoriosController {
 	@Autowired
 	private AcessorioService acessorioService;
 	
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody Acessorio acessorio) {
 		
@@ -42,7 +42,7 @@ public class AcessoriosController {
 		}
 		
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@RequestBody Acessorio acessorio, @PathVariable long id) {
 		
@@ -58,7 +58,7 @@ public class AcessoriosController {
 		}
 		
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Acessorio>> listAll (){
 		
@@ -74,7 +74,7 @@ public class AcessoriosController {
 		}
 		
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@GetMapping("/findById/{idAcessorio}")
 	public ResponseEntity<Acessorio> findById(@PathVariable long idAcessorio){
 		
@@ -88,7 +88,7 @@ public class AcessoriosController {
 		}
 		
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@DeleteMapping("/delete/{idAcessorio}")
 	public ResponseEntity<String> delete(@PathVariable long idAcessorio){
 		

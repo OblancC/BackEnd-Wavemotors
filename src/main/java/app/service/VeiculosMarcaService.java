@@ -34,9 +34,9 @@ public class VeiculosMarcaService {
 	}
 
 	public String delete(Long idMarca) {
-		this.veiculosmarcarepository.deleteById(idMarca);
 		VeiculosMarca veiculosmarca = this.veiculosmarcarepository.findByIdMarca(idMarca);
 		logService.createLog("DELETE", veiculosmarca.getMarca(),"Marca");
+		this.veiculosmarcarepository.deleteById(idMarca);
 		return "Marca deletada com sucesso";
 	}
 

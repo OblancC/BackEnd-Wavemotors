@@ -50,7 +50,6 @@ public class AnuncioVeiculoService {
 	}
 
 	public String delete(Long idAnuncio) {
-		this.anuncioveiculorepository.deleteById(idAnuncio);
 		AnuncioVeiculo anuncioveiculo = this.anuncioveiculorepository.findById(idAnuncio).get();
 		String nome = anuncioveiculo.getModelo();
 		String detalhesVeiculo = "ID: " + anuncioveiculo.getIdAnuncio() + ", "
@@ -62,6 +61,7 @@ public class AnuncioVeiculoService {
                 + "Placa: " + anuncioveiculo.getPlacacarro() + ", "
                 + "Km: " + anuncioveiculo.getKm() + ", "
                 + "Imagem: " + anuncioveiculo.getImagem();
+		this.anuncioveiculorepository.deleteById(idAnuncio);
 		logService.createLog("DELETE", detalhesVeiculo,"Veiculo");
 		return "Anuncio deletado com sucesso";
 	}

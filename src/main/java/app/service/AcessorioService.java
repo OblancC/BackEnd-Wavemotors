@@ -40,10 +40,10 @@ public class AcessorioService {
 	}
 	
 	public String delete(long id) {
-		this.acessorioRepository.deleteById(id);
 		Acessorio acessorio = this.acessorioRepository.findById(id).get();
 		String nome = acessorio.getNome();
 		logService.createLog("DELETE", nome,"Acessorio");
+		this.acessorioRepository.deleteById(id);
 		return "Acessorio Deletado";
 	}
 }

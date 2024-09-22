@@ -40,7 +40,7 @@ public class PropostaController {
 		}
 	}
 
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@PutMapping("/delete/{id}")
 	public ResponseEntity<String> delete(@PathVariable Long id) {
 		try {
@@ -50,7 +50,7 @@ public class PropostaController {
 			return new ResponseEntity<String>("Ocorreu esse erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@GetMapping("/findById/{id}")
 	public ResponseEntity<Proposta> findById(@PathVariable Long id) {
 		try {
@@ -60,7 +60,7 @@ public class PropostaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@GetMapping("/listAll")
 	public ResponseEntity<List<Proposta>> findAll() {
 		try {
@@ -70,7 +70,7 @@ public class PropostaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody @Valid Proposta proposta) {
 		try {
@@ -80,7 +80,7 @@ public class PropostaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@GetMapping("/findByValorProposta")
 	public ResponseEntity<List<Proposta>> findByvalorProposta(@RequestParam double valorProposta) {
 		try {

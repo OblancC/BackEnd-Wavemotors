@@ -29,7 +29,7 @@ public class VeiculosMarcaController {
 
 	@Autowired
 	private VeiculosMarcaService veiculosmarcaservice;
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@PostMapping("save")
 	public ResponseEntity<String> save(@RequestBody VeiculosMarca veiculosmarca) {
 		try {
@@ -40,7 +40,7 @@ public class VeiculosMarcaController {
 			return new ResponseEntity<String>("erro: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String> update(@PathVariable Long id, @RequestBody VeiculosMarca veiculosmarca) {
 		try {
@@ -72,7 +72,7 @@ public class VeiculosMarcaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}	
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@DeleteMapping("/delete/{idMarca}")
 	public ResponseEntity<String> delete(@PathVariable Long idMarca) {
 

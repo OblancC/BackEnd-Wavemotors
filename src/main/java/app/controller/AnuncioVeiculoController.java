@@ -30,7 +30,7 @@ public class AnuncioVeiculoController {
 	@Autowired
 	private AnuncioVeiculoService anuncioveiculoservice;
 	
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@PostMapping("save")
 	public ResponseEntity<String> save ( @RequestBody AnuncioVeiculo anuncioveiculo){
 		try {
@@ -41,7 +41,7 @@ public class AnuncioVeiculoController {
 			return new ResponseEntity<String>("erro: " +e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@PutMapping("/update/{id}")
 	public ResponseEntity<String>update ( @PathVariable Long id, @RequestBody AnuncioVeiculo anuncioveiculo){
 		try {
@@ -74,7 +74,7 @@ public class AnuncioVeiculoController {
 			return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
 		}
 	}
-	@PreAuthorize("hasRole(1)")
+	@PreAuthorize("hasRole(1) or hasRole(2)")
 	@DeleteMapping("/delete/{idAnuncio}")
 	public ResponseEntity<String> delete(@PathVariable Long idAnuncio) {
 
